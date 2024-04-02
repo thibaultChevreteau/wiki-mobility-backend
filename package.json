@@ -1,0 +1,26 @@
+{
+	"name": "wiki-mobility",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"tsc": "tsc",
+		"dev": "ts-node-dev src/index.ts",
+		"lint": "eslint --ext .ts ."
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"express-async-errors": "^3.1.1",
+		"mongoose": "^8.2.3"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.21",
+		"@types/mongoose": "^5.11.97",
+		"@typescript-eslint/eslint-plugin": "^7.4.0",
+		"@typescript-eslint/parser": "^7.4.0",
+		"eslint": "^8.57.0",
+		"ts-node-dev": "^2.0.0",
+		"typescript": "^5.4.3"
+	}
+}
