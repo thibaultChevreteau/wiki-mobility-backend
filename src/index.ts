@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+import cors from "cors";
+
 const app = express();
 import solutionRouter from "./routes/solutions";
 
@@ -31,6 +33,7 @@ async function connectToDatabase() {
 
 void connectToDatabase();
 
+app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
 app.use(express.json());
 app.use("/api/solutions", solutionRouter);
 
