@@ -41,6 +41,7 @@ void connectToDatabase();
 app.use(cors_1.default({}));
 app.use(express_1.default.json());
 app.use("/api/solutions", solutions_1.default);
+app.use(express_1.default.static("dist"));
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
