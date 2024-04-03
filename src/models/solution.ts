@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 export interface ISolution {
 	name: string;
 	description: string;
+	img: string;
 }
 
 const solutionSchema = new Schema({
@@ -12,6 +13,10 @@ const solutionSchema = new Schema({
 	},
 	author: String,
 	description: {
+		type: String,
+		required: true,
+	},
+	img: {
 		type: String,
 		required: true,
 	},
