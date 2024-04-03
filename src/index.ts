@@ -36,6 +36,7 @@ void connectToDatabase();
 app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
 app.use(express.json());
 app.use("/api/solutions", solutionRouter);
+app.use(express.static("dist"));
 
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
