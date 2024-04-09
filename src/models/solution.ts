@@ -4,6 +4,8 @@ export interface ISolution {
 	name: string;
 	description: string;
 	img: string;
+	googlePlusCode: string;
+	details?: string;
 }
 
 const solutionSchema = new Schema({
@@ -19,6 +21,14 @@ const solutionSchema = new Schema({
 	img: {
 		type: String,
 		required: true,
+	},
+	googlePlusCode: {
+		type: String,
+		required: true,
+	},
+	details: {
+		type: String,
+		required: false,
 	},
 });
 
