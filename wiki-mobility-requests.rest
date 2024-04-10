@@ -2,52 +2,48 @@ POST http://localhost:3000/api/solutions/ HTTP/1.1
 Content-Type: application/json
 
 	{
-		"_id": { "$oid": "660d66a8f9a6188ca907ffbf" },
 		"name": "Humbird - Le Woodybus",
 		"description": "Un vélobus en bois pour le transport des écoliers",
 		"img": "https://ik.imagekit.io/vndkxhhge/woodybus.jpg",
 		"googlePlusCode": "59XV+GC Nantes"
 	}
-	
+
+###
 POST http://localhost:3000/api/solutions/ HTTP/1.1
 Content-Type: application/json
 
 	{
-		"_id": { "$oid": "660d754ef9a6188ca907ffc0" },
 		"name": "Kilow - La Bagnole",
 		"description": "Un véhicule électrique utilitaire léger pour circuler en ville.",
 		"img": "https://ik.imagekit.io/vndkxhhge/La-Bagnole-KILOW.jpg",
 		"googlePlusCode": "3GMR+QR Thyez"
 	}
-
+###
 POST http://localhost:3000/api/solutions/ HTTP/1.1
 Content-Type: application/json
 
 	{
-		"_id": { "$oid": "660d7cebf9a6188ca907ffc1" },
 		"name": "Covoit'ici",
 		"description": "Borne de covoiturage qui reprend les codes des transports en commun",
 		"img": "https://ik.imagekit.io/vndkxhhge/Covoitici.webp",
 		"googlePlusCode": "C3PH+P6 Rouen"
 	}
-
+###
 POST http://localhost:3000/api/solutions/ HTTP/1.1
 Content-Type: application/json
 
 	{
-		"_id": { "$oid": "6613c9942d29e58d70d037dd" },
 		"name": "Keematic",
 		"description": "Solution connectée de gestion de flotte de véhicules et autopartage",
 		"img": "https://ik.imagekit.io/vndkxhhge/keematic.webp",
 		"googlePlusCode": "6XVQ+2P Ibos",
 		"details": "## Coordonnées\n\nStéphane CUIEC 0788625811 stephane@keematic.com\n\nMarine CUIEC 0661825117 marine@keematic.com\n\n## Bénéfices\n\nPermet d'optimiser la flotte de véhicule d'une collectivité, administration ou entreprise, et ses usages\n\n## Coût estimatif\n\n* Application de gestion de flotte : 8€/ mois/ véhicule\n* Boîtier de télématique embarqué (carnet de bord numérique : 20€ / mois/ véhicule\n* Distributeur automatique de clés : 15€/mois/véhicule (référencé UGAP)\n\n## Financement\n\nFond vert pour collectivités de moins de 50 000 habitants"
 	}
-
+###
 POST http://localhost:3000/api/solutions/ HTTP/1.1
 Content-Type: application/json
 
 	{
-		"_id": { "$oid": "6613cb852d29e58d70d037de" },
 		"name": "Mecamont - E-ZY Bike",
 		"description": "Station de lavage, kit d’outillage, borne de recharge de VAE",
 		"img": "https://ik.imagekit.io/vndkxhhge/MECAMONT_Borne_Velo.png",
