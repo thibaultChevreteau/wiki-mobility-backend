@@ -1,4 +1,4 @@
-import { ISolution } from "./models/solution";
+import { Category, ISolution, Region } from "./models/solution";
 
 const isString = (text: unknown): text is string => {
 	return (
@@ -41,10 +41,49 @@ const parseGooglePlusCode = (googlePlusCode: unknown): string => {
 
 const parseDetails = (details: unknown): string => {
 	if (!isString(details)) {
-		throw new Error("Incorrect or missing image url");
+		throw new Error("Incorrect or missing details");
 	}
 
 	return details;
+};
+
+const parseWebsite = (website: unknown): string => {
+	if (!isString(website)) {
+		throw new Error("Incorrect or missing website url");
+	}
+
+	return website;
+};
+const parseContact = (contact: unknown): string => {
+	if (!isString(contact)) {
+		throw new Error("Incorrect or missing image url");
+	}
+
+	return contact;
+};
+
+const isValidCategory = (category: string): boolean => {
+	return Object.values(Category).includes(category as Category);
+};
+
+const parseCategory = (category: unknown): Category => {
+	if (typeof category !== "string" || !isValidCategory(category)) {
+		throw new Error("Invalid or missing category");
+	}
+
+	return category as Category;
+};
+
+const isValidRegion = (region: string): boolean => {
+	return Object.values(Region).includes(region as Region);
+};
+
+const parseRegion = (region: unknown): Region => {
+	if (typeof region !== "string" || !isValidRegion(region)) {
+		throw new Error("Invalid or missing region");
+	}
+
+	return region as Region;
 };
 
 const toNewSolution = (object: unknown): ISolution => {
@@ -55,18 +94,28 @@ const toNewSolution = (object: unknown): ISolution => {
 	if (
 		"name" in object &&
 		"description" in object &&
+		"category" in object &&
 		"img" in object &&
+		"region" in object &&
 		"googlePlusCode" in object
 	) {
 		const newSolution: ISolution = {
 			name: parseName(object.name),
 			description: parseDescription(object.description),
+			category: parseCategory(object.category),
 			img: parseImg(object.img),
+			region: parseRegion(object.region),
 			googlePlusCode: parseGooglePlusCode(object.googlePlusCode),
 		};
 
 		if ("details" in object) {
 			newSolution.details = parseDetails(object.details);
+		}
+		if ("website" in object) {
+			newSolution.website = parseWebsite(object.website);
+		}
+		if ("contact" in object) {
+			newSolution.contact = parseContact(object.contact);
 		}
 
 		return newSolution;

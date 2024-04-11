@@ -1,10 +1,27 @@
 import { Schema, model } from "mongoose";
 
+export enum Category {
+	Amenagement = "Aménagement",
+	Materiel = "Matériel",
+	Sensibilisation = "Sensibilisation",
+	Other = "autre",
+}
+
+export enum Region {
+	Occitanie = "occitanie",
+	NouvelleAquitaine = "nouvelle-aquitaine",
+	Other = "autre",
+}
+
 export interface ISolution {
 	name: string;
 	description: string;
+	category: Category;
 	img: string;
+	region: Region;
 	googlePlusCode: string;
+	website?: string;
+	contact?: string;
 	details?: string;
 }
 
@@ -18,13 +35,31 @@ const solutionSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	category: {
+		type: String,
+		enum: Object.values(Category),
+		required: true,
+	},
 	img: {
 		type: String,
+		required: true,
+	},
+	region: {
+		type: String,
+		enum: Object.values(Region),
 		required: true,
 	},
 	googlePlusCode: {
 		type: String,
 		required: true,
+	},
+	website: {
+		type: String,
+		required: false,
+	},
+	contact: {
+		type: String,
+		required: false,
 	},
 	details: {
 		type: String,

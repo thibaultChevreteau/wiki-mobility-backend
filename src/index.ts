@@ -1,6 +1,7 @@
 import express from "express";
 import "express-async-errors";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 
@@ -36,7 +37,10 @@ void connectToDatabase();
 app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
 app.use(express.json());
 app.use("/api/solutions", solutionRouter);
-app.use(express.static("dist"));
+app.use(express.static(path.resolve(__dirname, "..", "dist")));
+app.get("*", (_req, res) => {
+	res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
