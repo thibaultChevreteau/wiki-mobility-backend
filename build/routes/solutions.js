@@ -14,25 +14,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const solution_1 = __importDefault(require("../models/solution"));
 const express_1 = require("express");
-//import utils from "../utils";
+const utils_1 = __importDefault(require("../utils"));
 const router = (0, express_1.Router)();
 router.get("/", ((_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const solutions = yield solution_1.default.find({});
     res.json(solutions);
 })));
 //POST route functionning but has to implement jwt for security reasons
-// router.post("/", (async (req, res) => {
-// 	try {
-// 		const newSolution = utils.toNewSolution(req.body);
-// 		const solution = new Solution(newSolution);
-// 		const savedSolution = await solution.save();
-// 		res.status(201).json(savedSolution);
-// 	} catch (error: unknown) {
-// 		let errorMessage = "Something went wrong.";
-// 		if (error instanceof Error) {
-// 			errorMessage += " Error: " + error.message;
-// 		}
-// 		res.status(400).send(errorMessage);
-// 	}
-// }) as RequestHandler);
+router.post("/", ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const newSolution = utils_1.default.toNewSolution(req.body);
+        const solution = new solution_1.default(newSolution);
+        const savedSolution = yield solution.save();
+        res.status(201).json(savedSolution);
+    }
+    catch (error) {
+        let errorMessage = "Something went wrong.";
+        if (error instanceof Error) {
+            errorMessage += " Error: " + error.message;
+        }
+        res.status(400).send(errorMessage);
+    }
+})));
 exports.default = router;

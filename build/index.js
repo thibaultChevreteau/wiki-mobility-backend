@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
@@ -41,7 +42,10 @@ void connectToDatabase();
 app.use(cors_1.default({}));
 app.use(express_1.default.json());
 app.use("/api/solutions", solutions_1.default);
-app.use(express_1.default.static("dist"));
+app.use(express_1.default.static(path_1.default.resolve(__dirname, "..", "dist")));
+app.get("*", (_req, res) => {
+    res.sendFile(path_1.default.resolve(__dirname, "..", "dist", "index.html"));
+});
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const solution_1 = require("./models/solution");
 const isString = (text) => {
     return ((typeof text === "string" || text instanceof String) &&
         text.trim().length > 0);
@@ -16,15 +17,81 @@ const parseDescription = (description) => {
     }
     return description;
 };
+const parseImg = (img) => {
+    if (!isString(img)) {
+        throw new Error("Incorrect or missing image url");
+    }
+    return img;
+};
+const parseGooglePlusCode = (googlePlusCode) => {
+    if (!isString(googlePlusCode)) {
+        throw new Error("Incorrect or missing image url");
+    }
+    return googlePlusCode;
+};
+const parseDetails = (details) => {
+    if (!isString(details)) {
+        throw new Error("Incorrect or missing details");
+    }
+    return details;
+};
+const parseWebsite = (website) => {
+    if (!isString(website)) {
+        throw new Error("Incorrect or missing website url");
+    }
+    return website;
+};
+const parseContact = (contact) => {
+    if (!isString(contact)) {
+        throw new Error("Incorrect or missing image url");
+    }
+    return contact;
+};
+const isValidCategory = (category) => {
+    return Object.values(solution_1.Category).includes(category);
+};
+const parseCategory = (category) => {
+    if (typeof category !== "string" || !isValidCategory(category)) {
+        throw new Error("Invalid or missing category");
+    }
+    return category;
+};
+const isValidRegion = (region) => {
+    return Object.values(solution_1.Region).includes(region);
+};
+const parseRegion = (region) => {
+    if (typeof region !== "string" || !isValidRegion(region)) {
+        throw new Error("Invalid or missing region");
+    }
+    return region;
+};
 const toNewSolution = (object) => {
     if (!object || typeof object !== "object") {
         throw new Error("Incorrect or missing data");
     }
-    if ("name" in object && "description" in object) {
+    if ("name" in object &&
+        "description" in object &&
+        "category" in object &&
+        "img" in object &&
+        "region" in object &&
+        "googlePlusCode" in object) {
         const newSolution = {
             name: parseName(object.name),
             description: parseDescription(object.description),
+            category: parseCategory(object.category),
+            img: parseImg(object.img),
+            region: parseRegion(object.region),
+            googlePlusCode: parseGooglePlusCode(object.googlePlusCode),
         };
+        if ("details" in object) {
+            newSolution.details = parseDetails(object.details);
+        }
+        if ("website" in object) {
+            newSolution.website = parseWebsite(object.website);
+        }
+        if ("contact" in object) {
+            newSolution.contact = parseContact(object.contact);
+        }
         return newSolution;
     }
     throw new Error("Incorrect data: a field is missing");
