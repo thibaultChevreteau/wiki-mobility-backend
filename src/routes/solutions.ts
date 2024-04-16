@@ -1,6 +1,7 @@
 import Solution from "../models/solution";
 import { RequestHandler, Router } from "express";
 import utils from "../utils";
+import { checkJwt, checkScopes } from "../middleware/auth0";
 
 const router = Router();
 
@@ -17,6 +18,27 @@ router.post("/", (async (req, res) => {
 		const savedSolution = await solution.save();
 		res.status(201).json(savedSolution);
 	} catch (error: unknown) {
+		let errorMessage = "Something went wrong.";
+		if (error instanceof Error) {
+			errorMessage += " Error: " + error.message;
+		}
+		res.status(400).send(errorMessage);
+	}
+}) as RequestHandler);
+
+router.put("/:id", checkJwt, checkScopes, (async (req, res) => {
+	try {
+		const solutionId = req.params.id;
+		const updatedSolution = utils.toNewSolution(req.body);
+		const existingSolution = await Solution.findById(solutionId);
+		if (!existingSolution) {
+			res.status(404).send("Solution not found.");
+		} else {
+			existingSolution.set(updatedSolution);
+			const savedSolution = await existingSolution.save();
+			res.status(200).json(savedSolution);
+		}
+	} catch (error) {
 		let errorMessage = "Something went wrong.";
 		if (error instanceof Error) {
 			errorMessage += " Error: " + error.message;

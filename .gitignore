@@ -131,3 +131,5 @@ out
 # local db
 db.json
 .vercel
+.import-data-mongodb.txt
+

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 const dotenv_1 = __importDefault(require("dotenv"));
-const path_1 = __importDefault(require("path"));
+// import path from "path";
 dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
@@ -42,9 +42,27 @@ void connectToDatabase();
 app.use(cors_1.default({}));
 app.use(express_1.default.json());
 app.use("/api/solutions", solutions_1.default);
-app.use(express_1.default.static(path_1.default.resolve(__dirname, "..", "dist")));
-app.get("*", (_req, res) => {
-    res.sendFile(path_1.default.resolve(__dirname, "..", "dist", "index.html"));
+// app.use(express.static(path.resolve(__dirname, "..", "dist")));
+// app.get("*", (_req, res) => {
+// 	res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
+// });
+// This route doesn't need authentication
+app.get("/api/public", function (_req, res) {
+    res.json({
+        message: "Hello from a public endpoint! You don't need to be authenticated to see this.",
+    });
+});
+const auth0_1 = require("./middleware/auth0");
+// This route needs authentication
+app.get("/api/private", auth0_1.checkJwt, function (_req, res) {
+    res.json({
+        message: "Hello from a private endpoint! You need to be authenticated to see this.",
+    });
+});
+app.get("/api/private-scoped", auth0_1.checkJwt, auth0_1.checkScopes, function (_req, res) {
+    res.json({
+        message: "Hello from a private endpoint! You need to be authenticated and have a scope of write:solutions to see this.",
+    });
 });
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

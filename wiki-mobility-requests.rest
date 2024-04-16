@@ -3,7 +3,7 @@ Content-Type: application/json
 
 	{
 		"name": "Humbird - Le Woodybus",
-		"category": "materiel",
+		"category": "Matériel",
 		"region": "autre",
 		"description": "Un vélobus en bois pour le transport des écoliers",
 		"img": "https://ik.imagekit.io/vndkxhhge/woodybus.jpg",
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 	{
 		"name": "Covoit'ici",
-		"category": "amenagement",
+		"category": "Aménagement",
 		"region": "autre",
 		"description": "Borne de covoiturage qui reprend les codes des transports en commun",
 		"img": "https://ik.imagekit.io/vndkxhhge/Covoitici.webp",
@@ -41,7 +41,7 @@ Content-Type: application/json
 
 	{
 		"name": "Keematic",
-		"category": "amenagement",
+		"category": "Aménagement",
 		"region": "occitanie",
 		"description": "Solution connectée de gestion de flotte de véhicules et autopartage",
 		"img": "https://ik.imagekit.io/vndkxhhge/keematic.webp",
@@ -56,9 +56,37 @@ Content-Type: application/json
 
 	{
 		"name": "Mecamont - E-ZY Bike",
-		"category": "amenagement",
+		"category": "Aménagement",
 		"region": "occitanie",
 		"description": "Station de lavage, kit d’outillage, borne de recharge de VAE",
 		"img": "https://ik.imagekit.io/vndkxhhge/MECAMONT_Borne_Velo.png",
 		"googlePlusCode": "39VF+7V Lannemezan"
+	}
+
+###
+GET http://localhost:3000/api/private/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdKYV9mZ2I1QWNHcVl2djRoRlRWVyJ9.eyJpc3MiOiJodHRwczovL2Rldi1kMWF0YTQyam82cGZsYW13LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiI3cFBZOHZFQkZBQk1BVVRYRUNaQ1lRREU4M0dheHRRSUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9lZGl0b3JpYWwuY29tIiwiaWF0IjoxNzEzMTk0ODAzLCJleHAiOjE3MTMyODEyMDMsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6IjdwUFk4dkVCRkFCTUFVVFhFQ1pDWVFERTgzR2F4dFFJIiwicGVybWlzc2lvbnMiOltdfQ.OwoEbWboGAAw5WoeC32T9ZsX6rMU78eaW4H-pK5xSs9Yq3HlYx_x4oW4pZd_uJ_YDqaZz2tzhd8MedfJWRIdKYz1Ea3opf-BBtflScC56m1cYcpOYoVDUNfsIwMGc53eNY_R5MqWDxugGgqb2I-PRqZ_-3_Gn7eh4oyCNWlNKfInPO2I4XIfwm1o_mGjAoakl1g2bI8vM8fZiUPZZ5YRfS37eiPuCSSgFn7rD7-RZqzDzxNQSWMsneQugMmEI7VGdB24Wn62uh89x0t761PXEkP92BnwdcASawBNsVpkNkPkmmfmDQoZ7jhppfPQFoDpYO9hspkLpevb8TsvRTxJZg
+
+###
+GET http://localhost:3000/api/private-scoped// HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdKYV9mZ2I1QWNHcVl2djRoRlRWVyJ9.eyJpc3MiOiJodHRwczovL2Rldi1kMWF0YTQyam82cGZsYW13LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiI3cFBZOHZFQkZBQk1BVVRYRUNaQ1lRREU4M0dheHRRSUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9lZGl0b3JpYWwuY29tIiwiaWF0IjoxNzEzMTk0ODAzLCJleHAiOjE3MTMyODEyMDMsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6IjdwUFk4dkVCRkFCTUFVVFhFQ1pDWVFERTgzR2F4dFFJIiwicGVybWlzc2lvbnMiOltdfQ.OwoEbWboGAAw5WoeC32T9ZsX6rMU78eaW4H-pK5xSs9Yq3HlYx_x4oW4pZd_uJ_YDqaZz2tzhd8MedfJWRIdKYz1Ea3opf-BBtflScC56m1cYcpOYoVDUNfsIwMGc53eNY_R5MqWDxugGgqb2I-PRqZ_-3_Gn7eh4oyCNWlNKfInPO2I4XIfwm1o_mGjAoakl1g2bI8vM8fZiUPZZ5YRfS37eiPuCSSgFn7rD7-RZqzDzxNQSWMsneQugMmEI7VGdB24Wn62uh89x0t761PXEkP92BnwdcASawBNsVpkNkPkmmfmDQoZ7jhppfPQFoDpYO9hspkLpevb8TsvRTxJZg
+
+###
+GET http://localhost:3000/api/solutions/ HTTP/1.1
+content-type: application/json
+
+###
+PUT http://localhost:3000/api/solutions/661e59b91ce359b42c679ca7 HTTP/1.1
+content-type: application/json
+
+ 	{
+		"name": "Mecamont - E-ZY Bike",
+		"category": "Aménagement",
+		"region": "occitanie",
+		"description": "Station de lavage, kit d’outillage, borne de recharge de VAE",
+		"img": "https://ik.imagekit.io/vndkxhhge/MECAMONT_Borne_Velo.png",
+		"googlePlusCode": "39VF+7V Lannemezan",
+    	"id": "661e59b91ce359b42c679ca7"
 	}
