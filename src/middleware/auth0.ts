@@ -1,3 +1,4 @@
+// visit auth0.com
 import { auth, requiredScopes } from "express-oauth2-jwt-bearer";
 
 export const checkJwt = auth({
