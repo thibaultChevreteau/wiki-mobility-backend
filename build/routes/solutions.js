@@ -21,8 +21,7 @@ router.get("/", ((_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const solutions = yield solution_1.default.find({});
     res.json(solutions);
 })));
-//POST route functionning but has to implement jwt for security reasons
-router.post("/", ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/", auth0_1.checkJwt, auth0_1.checkScopes, ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newSolution = utils_1.default.toNewSolution(req.body);
         const solution = new solution_1.default(newSolution);

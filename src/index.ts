@@ -1,7 +1,7 @@
 import express from "express";
 import "express-async-errors";
 import dotenv from "dotenv";
-// import path from "path";
+import path from "path";
 
 dotenv.config();
 
@@ -37,34 +37,9 @@ void connectToDatabase();
 app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
 app.use(express.json());
 app.use("/api/solutions", solutionRouter);
-// app.use(express.static(path.resolve(__dirname, "..", "dist")));
-// app.get("*", (_req, res) => {
-// 	res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
-// });
-
-// This route doesn't need authentication
-app.get("/api/public", function (_req, res) {
-	res.json({
-		message:
-			"Hello from a public endpoint! You don't need to be authenticated to see this.",
-	});
-});
-
-import { checkJwt, checkScopes } from "./middleware/auth0";
-
-// This route needs authentication
-app.get("/api/private", checkJwt, function (_req, res) {
-	res.json({
-		message:
-			"Hello from a private endpoint! You need to be authenticated to see this.",
-	});
-});
-
-app.get("/api/private-scoped", checkJwt, checkScopes, function (_req, res) {
-	res.json({
-		message:
-			"Hello from a private endpoint! You need to be authenticated and have a scope of write:solutions to see this.",
-	});
+app.use(express.static(path.resolve(__dirname, "..", "dist")));
+app.get("*", (_req, res) => {
+	res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
 });
 
 app.listen(PORT, () => {

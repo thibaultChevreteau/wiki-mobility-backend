@@ -10,8 +10,7 @@ router.get("/", (async (_req, res) => {
 	res.json(solutions);
 }) as RequestHandler);
 
-//POST route functionning but has to implement jwt for security reasons
-router.post("/", (async (req, res) => {
+router.post("/", checkJwt, checkScopes, (async (req, res) => {
 	try {
 		const newSolution = utils.toNewSolution(req.body);
 		const solution = new Solution(newSolution);
