@@ -90,3 +90,11 @@ content-type: application/json
 		"googlePlusCode": "39VF+7V Lannemezan",
     	"id": "661e59b91ce359b42c679ca7"
 	}
+
+###
+DELETE http://localhost:3000/imagekit/662115f188c257da33a0f57c HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:3000/api/solutions/imagekit/6620e6c37d93b6d18cd9f3ba HTTP/1.1
+content-type: application/json

@@ -23,6 +23,12 @@ const parseImg = (img) => {
     }
     return img;
 };
+const parseImgId = (imgId) => {
+    if (!isString(imgId)) {
+        throw new Error("Incorrect or missing image id");
+    }
+    return imgId;
+};
 const parseGooglePlusCode = (googlePlusCode) => {
     if (!isString(googlePlusCode)) {
         throw new Error("Incorrect or missing image url");
@@ -43,7 +49,7 @@ const parseWebsite = (website) => {
 };
 const parseContact = (contact) => {
     if (!isString(contact)) {
-        throw new Error("Incorrect or missing image url");
+        throw new Error("Incorrect or missing contact informations");
     }
     return contact;
 };
@@ -73,6 +79,7 @@ const toNewSolution = (object) => {
         "description" in object &&
         "category" in object &&
         "img" in object &&
+        "imgId" in object &&
         "region" in object &&
         "googlePlusCode" in object) {
         const newSolution = {
@@ -80,6 +87,7 @@ const toNewSolution = (object) => {
             description: parseDescription(object.description),
             category: parseCategory(object.category),
             img: parseImg(object.img),
+            imgId: parseImgId(object.imgId),
             region: parseRegion(object.region),
             googlePlusCode: parseGooglePlusCode(object.googlePlusCode),
         };

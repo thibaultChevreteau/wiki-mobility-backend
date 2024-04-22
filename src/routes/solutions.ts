@@ -2,6 +2,7 @@ import Solution from "../models/solution";
 import { RequestHandler, Router } from "express";
 import utils from "../utils";
 import { checkJwt, checkScopes } from "../middleware/auth0";
+import { imagekit } from "../middleware/imageKit";
 
 const router = Router();
 
@@ -45,5 +46,16 @@ router.put("/:id", checkJwt, checkScopes, (async (req, res) => {
 		res.status(400).send(errorMessage);
 	}
 }) as RequestHandler);
+
+router.get("/imagekit/:file_id", function (req, res) {
+	const file_id = req.params.file_id;
+	imagekit.getFileDetails(file_id, function (error, result) {
+		if (error) console.log(error);
+		else {
+			res.json(result?.url);
+			console.log(result);
+		}
+	});
+});
 
 export default router;

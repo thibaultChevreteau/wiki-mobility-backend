@@ -16,6 +16,7 @@ const solution_1 = __importDefault(require("../models/solution"));
 const express_1 = require("express");
 const utils_1 = __importDefault(require("../utils"));
 const auth0_1 = require("../middleware/auth0");
+const imageKit_1 = require("../middleware/imageKit");
 const router = (0, express_1.Router)();
 router.get("/", ((_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const solutions = yield solution_1.default.find({});
@@ -58,4 +59,15 @@ router.put("/:id", auth0_1.checkJwt, auth0_1.checkScopes, ((req, res) => __await
         res.status(400).send(errorMessage);
     }
 })));
+router.get("/imagekit/:file_id", function (req, res) {
+    const file_id = req.params.file_id;
+    imageKit_1.imagekit.getFileDetails(file_id, function (error, result) {
+        if (error)
+            console.log(error);
+        else {
+            res.json(result === null || result === void 0 ? void 0 : result.url);
+            console.log(result);
+        }
+    });
+});
 exports.default = router;

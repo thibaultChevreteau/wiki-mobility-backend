@@ -18,6 +18,7 @@ export interface ISolution {
 	description: string;
 	category: Category;
 	img: string;
+	imgId: string;
 	region: Region;
 	googlePlusCode: string;
 	website?: string;
@@ -41,6 +42,10 @@ const solutionSchema = new Schema({
 		required: true,
 	},
 	img: {
+		type: String,
+		required: true,
+	},
+	imgId: {
 		type: String,
 		required: true,
 	},

@@ -31,6 +31,14 @@ const parseImg = (img: unknown): string => {
 	return img;
 };
 
+const parseImgId = (imgId: unknown): string => {
+	if (!isString(imgId)) {
+		throw new Error("Incorrect or missing image id");
+	}
+
+	return imgId;
+};
+
 const parseGooglePlusCode = (googlePlusCode: unknown): string => {
 	if (!isString(googlePlusCode)) {
 		throw new Error("Incorrect or missing image url");
@@ -56,7 +64,7 @@ const parseWebsite = (website: unknown): string => {
 };
 const parseContact = (contact: unknown): string => {
 	if (!isString(contact)) {
-		throw new Error("Incorrect or missing image url");
+		throw new Error("Incorrect or missing contact informations");
 	}
 
 	return contact;
@@ -96,6 +104,7 @@ const toNewSolution = (object: unknown): ISolution => {
 		"description" in object &&
 		"category" in object &&
 		"img" in object &&
+		"imgId" in object &&
 		"region" in object &&
 		"googlePlusCode" in object
 	) {
@@ -104,6 +113,7 @@ const toNewSolution = (object: unknown): ISolution => {
 			description: parseDescription(object.description),
 			category: parseCategory(object.category),
 			img: parseImg(object.img),
+			imgId: parseImgId(object.imgId),
 			region: parseRegion(object.region),
 			googlePlusCode: parseGooglePlusCode(object.googlePlusCode),
 		};

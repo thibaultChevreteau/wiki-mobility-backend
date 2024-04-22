@@ -34,6 +34,10 @@ const solutionSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    imgId: {
+        type: String,
+        required: true,
+    },
     region: {
         type: String,
         enum: Object.values(Region),
