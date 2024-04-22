@@ -50,11 +50,11 @@ app.use(function (_req, res, next) {
 app.use(cors_1.default({}));
 app.use(express_1.default.json());
 app.use("/api/solutions", solutions_1.default);
-app.get("/imagekit", auth0_1.checkJwt, auth0_1.checkScopes, function (_req, res) {
+app.get("/api/imagekit", auth0_1.checkJwt, auth0_1.checkScopes, function (_req, res) {
     const result = imageKit_1.imagekit.getAuthenticationParameters();
     res.send(result);
 });
-app.delete("/imagekit/:file_id", auth0_1.checkJwt, auth0_1.checkScopes, function (req, _res) {
+app.delete("/api/imagekit/:file_id", auth0_1.checkJwt, auth0_1.checkScopes, function (req, _res) {
     const file_id = req.params.file_id;
     imageKit_1.imagekit.deleteFile(file_id, function (error, result) {
         if (error)

@@ -50,18 +50,23 @@ app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
 app.use(express.json());
 app.use("/api/solutions", solutionRouter);
 
-app.get("/imagekit", checkJwt, checkScopes, function (_req, res) {
+app.get("/api/imagekit", checkJwt, checkScopes, function (_req, res) {
 	const result = imagekit.getAuthenticationParameters();
 	res.send(result);
 });
 
-app.delete("/imagekit/:file_id", checkJwt, checkScopes, function (req, _res) {
-	const file_id = req.params.file_id;
-	imagekit.deleteFile(file_id, function (error, result) {
-		if (error) console.log(error);
-		else console.log(result);
-	});
-});
+app.delete(
+	"/api/imagekit/:file_id",
+	checkJwt,
+	checkScopes,
+	function (req, _res) {
+		const file_id = req.params.file_id;
+		imagekit.deleteFile(file_id, function (error, result) {
+			if (error) console.log(error);
+			else console.log(result);
+		});
+	}
+);
 
 app.use(express.static(path.resolve(__dirname, "..", "dist")));
 app.get("*", (_req, res) => {
