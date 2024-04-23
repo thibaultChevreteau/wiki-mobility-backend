@@ -9,7 +9,8 @@
 		"region": "autre",
 		"googlePlusCode": "3GMR+QR Thyez",
 		"website": "https://kilow.com/",
-		"__v": 0
+		"__v": 0,
+		"contact": "[Formulaire de contact](https://kilow.com/pages/contact-1)"
 	},
 	{
 		"_id": { "$oid": "662129903bcab17d9e9d11b2" },
@@ -27,8 +28,8 @@
 		"name": "Covoit'ici",
 		"description": "Borne de covoiturage qui reprend les codes des transports en commun",
 		"category": "Aménagement",
-		"img": "https://ik.imagekit.io/vndkxhhge/Covoitici.webp",
-		"imgId": "6620e6c07d93b6d18cd9f26a",
+		"img": "https://ik.imagekit.io/vndkxhhge/Mobility_Solutions/solution_image_N11A1TfD-",
+		"imgId": "66261b6088c257da33f76eb9",
 		"region": "autre",
 		"googlePlusCode": "C3PH+P6 Rouen",
 		"__v": 0
@@ -38,8 +39,8 @@
 		"name": "Keematic",
 		"description": "Solution connectée de gestion de flotte de véhicules et autopartage",
 		"category": "Aménagement",
-		"img": "https://ik.imagekit.io/vndkxhhge/keematic.webp",
-		"imgId": "6620e6be7d93b6d18cd9f097",
+		"img": "https://ik.imagekit.io/vndkxhhge/Mobility_Solutions/solution_image_uLK_FEobt",
+		"imgId": "66261b9688c257da33f8c5b9",
 		"region": "occitanie",
 		"googlePlusCode": "6XVQ+2P Ibos",
 		"website": "https://www.keematic.com",
