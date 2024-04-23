@@ -7,7 +7,7 @@ var Category;
     Category["Amenagement"] = "Am\u00E9nagement";
     Category["Materiel"] = "Mat\u00E9riel";
     Category["Sensibilisation"] = "Sensibilisation";
-    Category["Other"] = "autre";
+    Category["Other"] = "Autre";
 })(Category || (exports.Category = Category = {}));
 var Region;
 (function (Region) {
