@@ -7,8 +7,13 @@ import { imagekit } from "../middleware/imageKit";
 const router = Router();
 
 router.get("/", (async (_req, res) => {
-	const solutions = await Solution.find({});
-	res.json(solutions);
+	try {
+		const solutions = await Solution.find({});
+		res.json(solutions);
+	} catch (error) {
+		console.log(error);
+		throw new Error("erreur");
+	}
 }) as RequestHandler);
 
 router.post("/", checkJwt, checkScopes, (async (req, res) => {

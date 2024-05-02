@@ -19,8 +19,14 @@ const auth0_1 = require("../middleware/auth0");
 const imageKit_1 = require("../middleware/imageKit");
 const router = (0, express_1.Router)();
 router.get("/", ((_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const solutions = yield solution_1.default.find({});
-    res.json(solutions);
+    try {
+        const solutions = yield solution_1.default.find({});
+        res.json(solutions);
+    }
+    catch (error) {
+        console.log(error);
+        throw new Error("erreur");
+    }
 })));
 router.post("/", auth0_1.checkJwt, auth0_1.checkScopes, ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
