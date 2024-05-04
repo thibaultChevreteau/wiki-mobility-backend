@@ -40,33 +40,40 @@ function connectToDatabase() {
         }
     });
 }
-void connectToDatabase();
-// allow cross-origin requests
-app.use(function (_req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-app.use(cors_1.default({}));
-app.use(express_1.default.json());
-app.use("/api/solutions", solutions_1.default);
-app.get("/api/imagekit", auth0_1.checkJwt, auth0_1.checkScopes, function (_req, res) {
-    const result = imageKit_1.imagekit.getAuthenticationParameters();
-    res.send(result);
-});
-app.delete("/api/imagekit/:file_id", auth0_1.checkJwt, auth0_1.checkScopes, function (req, _res) {
-    const file_id = req.params.file_id;
-    imageKit_1.imagekit.deleteFile(file_id, function (error, result) {
-        if (error)
-            console.log(error);
-        else
-            console.log(result);
+function startServer() {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield connectToDatabase();
+        // allow cross-origin requests
+        app.use(function (_req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
+        app.use(cors_1.default({}));
+        app.use(express_1.default.json());
+        app.use("/api/solutions", solutions_1.default);
+        app.get("/api/imagekit", auth0_1.checkJwt, auth0_1.checkScopes, function (_req, res) {
+            const result = imageKit_1.imagekit.getAuthenticationParameters();
+            res.send(result);
+        });
+        app.delete("/api/imagekit/:file_id", auth0_1.checkJwt, auth0_1.checkScopes, function (req, _res) {
+            const file_id = req.params.file_id;
+            imageKit_1.imagekit.deleteFile(file_id, function (error, result) {
+                if (error)
+                    console.log(error);
+                else
+                    console.log(result);
+            });
+        });
+        app.use(express_1.default.static(path_1.default.resolve(__dirname, "..", "dist")));
+        app.get("*", (_req, res) => {
+            res.sendFile(path_1.default.resolve(__dirname, "..", "dist", "index.html"));
+        });
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
     });
-});
-app.use(express_1.default.static(path_1.default.resolve(__dirname, "..", "dist")));
-app.get("*", (_req, res) => {
-    res.sendFile(path_1.default.resolve(__dirname, "..", "dist", "index.html"));
-});
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+}
+startServer().catch((error) => {
+    console.error("Error starting server:", error);
 });

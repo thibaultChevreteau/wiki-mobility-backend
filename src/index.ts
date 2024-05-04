@@ -34,45 +34,51 @@ async function connectToDatabase() {
 	}
 }
 
-void connectToDatabase();
+async function startServer() {
+	await connectToDatabase();
 
-// allow cross-origin requests
-app.use(function (_req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept"
+	// allow cross-origin requests
+	app.use(function (_req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header(
+			"Access-Control-Allow-Headers",
+			"Origin, X-Requested-With, Content-Type, Accept"
+		);
+		next();
+	});
+
+	app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
+	app.use(express.json());
+	app.use("/api/solutions", solutionRouter);
+
+	app.get("/api/imagekit", checkJwt, checkScopes, function (_req, res) {
+		const result = imagekit.getAuthenticationParameters();
+		res.send(result);
+	});
+
+	app.delete(
+		"/api/imagekit/:file_id",
+		checkJwt,
+		checkScopes,
+		function (req, _res) {
+			const file_id = req.params.file_id;
+			imagekit.deleteFile(file_id, function (error, result) {
+				if (error) console.log(error);
+				else console.log(result);
+			});
+		}
 	);
-	next();
-});
 
-app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
-app.use(express.json());
-app.use("/api/solutions", solutionRouter);
+	app.use(express.static(path.resolve(__dirname, "..", "dist")));
+	app.get("*", (_req, res) => {
+		res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
+	});
 
-app.get("/api/imagekit", checkJwt, checkScopes, function (_req, res) {
-	const result = imagekit.getAuthenticationParameters();
-	res.send(result);
-});
+	app.listen(PORT, () => {
+		console.log(`Server running on port ${PORT}`);
+	});
+}
 
-app.delete(
-	"/api/imagekit/:file_id",
-	checkJwt,
-	checkScopes,
-	function (req, _res) {
-		const file_id = req.params.file_id;
-		imagekit.deleteFile(file_id, function (error, result) {
-			if (error) console.log(error);
-			else console.log(result);
-		});
-	}
-);
-
-app.use(express.static(path.resolve(__dirname, "..", "dist")));
-app.get("*", (_req, res) => {
-	res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
-});
-
-app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`);
+startServer().catch((error) => {
+	console.error("Error starting server:", error);
 });
