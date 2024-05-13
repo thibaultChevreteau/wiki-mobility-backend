@@ -11,8 +11,6 @@ router.get("/", (async (_req, res) => {
 		const solutions = await Solution.find({});
 		res.json(solutions);
 	} catch (error) {
-		console.log(process.env);
-
 		console.log(error);
 		throw new Error("erreur");
 	}

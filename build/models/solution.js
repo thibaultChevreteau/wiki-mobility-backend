@@ -4,10 +4,12 @@ exports.Region = exports.Category = void 0;
 const mongoose_1 = require("mongoose");
 var Category;
 (function (Category) {
-    Category["Amenagement"] = "Am\u00E9nagement";
-    Category["Materiel"] = "Mat\u00E9riel";
-    Category["Sensibilisation"] = "Sensibilisation";
-    Category["Other"] = "Autre";
+    Category["Amenagement"] = "AM\u00C9NAGEMENT";
+    Category["Vehicule"] = "V\u00C9HICULE";
+    Category["Application"] = "APPLICATION";
+    Category["Sensibilisation"] = "SENSIBILISATION";
+    Category["Ateliers"] = "ATELIER";
+    Category["Other"] = "AUTRE";
 })(Category || (exports.Category = Category = {}));
 var Region;
 (function (Region) {

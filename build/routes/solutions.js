@@ -24,7 +24,6 @@ router.get("/", ((_req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.json(solutions);
     }
     catch (error) {
-        console.log(process.env);
         console.log(error);
         throw new Error("erreur");
     }
