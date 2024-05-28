@@ -13,8 +13,8 @@ var Category;
 })(Category || (exports.Category = Category = {}));
 var Region;
 (function (Region) {
-    Region["Occitanie"] = "occitanie";
-    Region["NouvelleAquitaine"] = "nouvelle-aquitaine";
+    Region["HautesPyrenees"] = "hautes-pyrenees";
+    Region["PyrennesAtlantiques"] = "pyrenees-atlantiques";
     Region["Other"] = "autre";
 })(Region || (exports.Region = Region = {}));
 const solutionSchema = new mongoose_1.Schema({
