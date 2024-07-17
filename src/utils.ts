@@ -7,6 +7,14 @@ const isString = (text: unknown): text is string => {
 	);
 };
 
+const isNumber = (num: unknown): num is number => {
+	return typeof num === "number" && !isNaN(num);
+};
+
+const isArray = (arr: unknown): arr is Array<unknown> => {
+	return Array.isArray(arr);
+};
+
 const parseName = (name: unknown): string => {
 	if (!isString(name)) {
 		throw new Error("Incorrect or missing name");
@@ -39,12 +47,19 @@ const parseImgId = (imgId: unknown): string => {
 	return imgId;
 };
 
-const parseGooglePlusCode = (googlePlusCode: unknown): string => {
-	if (!isString(googlePlusCode)) {
-		throw new Error("Incorrect or missing image url");
+const parseCoordinates = (coordinates: unknown): [number, number] => {
+	if (!isArray(coordinates) || coordinates.length !== 2) {
+		throw new Error("Incorrect or missing coordinates");
 	}
 
-	return googlePlusCode;
+	const [lat, lng] = coordinates;
+	if (!isNumber(lat) || !isNumber(lng)) {
+		throw new Error(
+			"Coordinates must be an array of two numbers (latitude and longitude)"
+		);
+	}
+
+	return [lat, lng];
 };
 
 const parseDetails = (details: unknown): string => {
@@ -106,7 +121,7 @@ const toNewSolution = (object: unknown): ISolution => {
 		"img" in object &&
 		"imgId" in object &&
 		"region" in object &&
-		"googlePlusCode" in object
+		"coordinates" in object
 	) {
 		const newSolution: ISolution = {
 			name: parseName(object.name),
@@ -115,7 +130,7 @@ const toNewSolution = (object: unknown): ISolution => {
 			img: parseImg(object.img),
 			imgId: parseImgId(object.imgId),
 			region: parseRegion(object.region),
-			googlePlusCode: parseGooglePlusCode(object.googlePlusCode),
+			coordinates: parseCoordinates(object.coordinates),
 		};
 
 		if ("details" in object) {

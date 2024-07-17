@@ -45,8 +45,8 @@ const solutionSchema = new mongoose_1.Schema({
         enum: Object.values(Region),
         required: true,
     },
-    googlePlusCode: {
-        type: String,
+    coordinates: {
+        type: [Number],
         required: true,
     },
     website: {

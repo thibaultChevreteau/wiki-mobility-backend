@@ -22,7 +22,7 @@ export interface ISolution {
 	img: string;
 	imgId: string;
 	region: Region;
-	googlePlusCode: string;
+	coordinates: [number, number];
 	website?: string;
 	contact?: string;
 	details?: string;
@@ -56,8 +56,8 @@ const solutionSchema = new Schema({
 		enum: Object.values(Region),
 		required: true,
 	},
-	googlePlusCode: {
-		type: String,
+	coordinates: {
+		type: [Number],
 		required: true,
 	},
 	website: {
